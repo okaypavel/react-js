@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        const Body = () => {
+            const dziala = () => {
+                //email
+                const email = document.getElementById("mail").value
+                if (email == '@') {
+                    document.getElementById("email").innerHTML = '<p style="color: green;">E-mail podany</p>'
+                } else {
+                    document.getElementById("email").innerHTML = '<p style="color: red;">E-mail ma zawierać w sobie "@"</p>'
+                }
+                //haslo
+                const haslo = document.getElementById("haslo").value
+                if (haslo.length >= 7 <= 0) {
+                    document.getElementById("phaslo").innerHTML = '<p style="color: red;">Hasło ma zawierać minimum 7 znaków</p>';
+                } else if (haslo.length >= 7) {
+                    document.getElementById("phaslo").innerHTML = '<p style="color: green;">Hasło podane</p>';
+                }
+                //powt haslo
+                const phaslo = document.getElementById("powhaslo").value
+                if (phaslo != haslo) {
+                    document.getElementById("pphaslo").innerHTML = '<p style="color: red;">Hasła są różne</p>'
+                } else if (phaslo === haslo) {
+                    document.getElementById("pphaslo").innerHTML = '<p style="color: green;">Hasło podane</p>'
+                }
+            }
+            return (
+                <>
+                    <h1>Rejestruj konto</h1>
+                    <p id="email">Podaj e-mail:</p>
+                    <p><input type="email" id="mail" placeholder="Adres e-mail" /></p>
+                    <p id="phaslo">Podaj hasło:</p>
+                    <p><input type="password" id="haslo" placeholder="Hasło" /></p>
+                    <p id="pphaslo">Powtórz hasło:</p>
+                    <p><input type="password" id="powhaslo" placeholder="Powtórz hasło" /></p>
+                    <button onClick={dziala}>Zatwierdź</button>
+                </>
+            )
+        }
+        root.render(<Body />)
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const body = ReactDOM.createRoot(document.getElementById('root'))
+        const Body = () => {
+            const [liczby, setLiczby] = React.useState(0)
+            const [czas, setCzas] = React.useState(new Date())
+            setInterval(() => setCzas(new Date()), 1000)
+            const Dodaj = () => {
+                setLiczby(liczby + 1)
+            }
+            const Usun = () => {
+                liczby === 0 ? setLiczby(0) : setLiczby(liczby - 1)
+            }
+            return (
+                <>
+                    <div className="image">
+                        <img src="domki_w_gorach__3.jpg" alt="" />
+                        <div className="divv">
+                            <h3>Domek w górach</h3>
+                            <p className="🕛">{czas.toLocaleDateString()}</p>
+                            <p className="🕛">{czas.toLocaleTimeString()}</p>
+                        </div>
+                    </div>
+                    <p className="polub">Polubień: {liczby}</p>
+                    <button onClick={Dodaj}>POLUB</button>
+                    <button onClick={Usun}>USUŃ</button>
+                    <hr />
+                    <p>Opis</p>
+                    <p>Odwiedź komfortowy domek w Sudetach, blisko do szlaków turystycznych</p>
+                </>
+            )
+        }
+        body.render(<Body />)
+    </script>
+</body>
+
+</html>
