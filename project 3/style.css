@@ -25,6 +25,14 @@ input {
     padding: 5px;
 }
 
+.accept {
+    color: green;
+}
+
+.no {
+    color: red;
+}
+
 body {
     text-align: center;
     /* background-color: #7900c4a7; */

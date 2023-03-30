@@ -19,38 +19,74 @@
     <script type="text/babel">
         const root = ReactDOM.createRoot(document.getElementById("root"));
         const Body = () => {
+            const [mail, setMail] = React.useState('');
+            const [haslo, setHaslo] = React.useState('');
+            const [phaslo, setPhaslo] = React.useState('');
+            const [napisEmail, setNapisEmail] = React.useState('Podaj e-mail:');
+            const [napisHaslo, setNapisHaslo] = React.useState('Podaj hasło:');
+            const [napisPhaslo, setNapisPhaslo] = React.useState('Powtórz hasło:');
+            const [colorEmail, setColorEmail] = React.useState('');
+            const [colorHaslo, setColorHaslo] = React.useState('');
+            const [colorPhaslo, setColorPhaslo] = React.useState('');
+
             const dziala = () => {
-                //email
-                const email = document.getElementById("mail").value
-                if (email == '@') {
-                    document.getElementById("email").innerHTML = '<p style="color: green;">E-mail podany</p>'
+                // //email
+                // const email = document.getElementById("mail").value
+                // if (email.includes("@") && email.includes(".")) {
+                //     document.getElementById("email").innerHTML = '<p style="color: green;">E-mail podany</p>'
+                // } else {
+                //     document.getElementById("email").innerHTML = '<p style="color: red;">E-mail ma zawierać w sobie "@" oraz "."</p>'
+                // }
+                // //haslo
+                // const haslo = document.getElementById("haslo").value
+                // if (haslo.length >= 7 <= 0) {
+                //     document.getElementById("phaslo").innerHTML = '<p style="color: red;">Hasło ma zawierać minimum 7 znaków</p>';
+                // } else if (haslo.length >= 7) {
+                //     document.getElementById("phaslo").innerHTML = '<p style="color: green;">Hasło podane</p>';
+                // }
+                // //powt haslo
+                // const phaslo = document.getElementById("powhaslo").value
+                // if (phaslo != haslo) {
+                //     document.getElementById("pphaslo").innerHTML = '<p style="color: red;">Hasła są różne</p>'
+                // } else if (phaslo === haslo) {
+                //     document.getElementById("pphaslo").innerHTML = '<p style="color: green;">Hasło podane</p>'
+                // }
+
+                //
+
+                if (mail.includes("@") && mail.includes(".")) {
+                    setNapisEmail('E-mail podany')
+                    setColorEmail('green')
                 } else {
-                    document.getElementById("email").innerHTML = '<p style="color: red;">E-mail ma zawierać w sobie "@"</p>'
+                    setNapisEmail('E-mail ma zawierać w sobie "@" oraz "."')
+                    setColorEmail('red')
                 }
-                //haslo
-                const haslo = document.getElementById("haslo").value
                 if (haslo.length >= 7 <= 0) {
-                    document.getElementById("phaslo").innerHTML = '<p style="color: red;">Hasło ma zawierać minimum 7 znaków</p>';
+                    setNapisHaslo('Hasło ma zawierać minimum 7 znaków')
+                    setColorHaslo('red');
                 } else if (haslo.length >= 7) {
-                    document.getElementById("phaslo").innerHTML = '<p style="color: green;">Hasło podane</p>';
+                    setNapisHaslo('Hasło podane')
+                    setColorHaslo('green');
                 }
-                //powt haslo
-                const phaslo = document.getElementById("powhaslo").value
                 if (phaslo != haslo) {
-                    document.getElementById("pphaslo").innerHTML = '<p style="color: red;">Hasła są różne</p>'
+                    setNapisPhaslo('Hasła są różne')
+                    setColorPhaslo('red')
                 } else if (phaslo === haslo) {
-                    document.getElementById("pphaslo").innerHTML = '<p style="color: green;">Hasło podane</p>'
+                    setNapisPhaslo('Hasło podane')
+                    setColorPhaslo('green');
                 }
+
             }
+
             return (
                 <>
                     <h1>Rejestruj konto</h1>
-                    <p id="email">Podaj e-mail:</p>
-                    <p><input type="email" id="mail" placeholder="Adres e-mail" /></p>
-                    <p id="phaslo">Podaj hasło:</p>
-                    <p><input type="password" id="haslo" placeholder="Hasło" /></p>
-                    <p id="pphaslo">Powtórz hasło:</p>
-                    <p><input type="password" id="powhaslo" placeholder="Powtórz hasło" /></p>
+                    <p id="email" style={{ color: colorEmail  }}>{napisEmail}</p>
+                    <p><input type="email" id="mail" onChange={(e) => setMail(e.target.value)} placeholder="Adres e-mail" /></p>
+                    <p id="phaslo" style={{ color: colorHaslo  }}>{napisHaslo}</p>
+                    <p><input type="password" id="haslo" onChange={(e) => setHaslo(e.target.value)} placeholder="Hasło" /></p>
+                    <p id="pphaslo" style={{ color: colorPhaslo }}>{napisPhaslo}</p>
+                    <p><input type="password" id="powhaslo" onChange={(e) => setPhaslo(e.target.value)} placeholder="Powtórz hasło" /></p>
                     <button onClick={dziala}>Zatwierdź</button>
                 </>
             )
